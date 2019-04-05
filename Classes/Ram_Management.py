@@ -207,7 +207,7 @@ class Memory_management:
         print("Internal Fragmentation : ", internal_fragmentation)
         print("External Fragmentation : ", external_fragmentation)
         print("Taken : ", taken)
-        # self.display_box(taken)
+        self.display_box_var(taken)
 
     def Best_fit_var(self, type):
         taken = []
@@ -261,7 +261,7 @@ class Memory_management:
         print("Internal Fragmentation : ", internal_fragmentation)
         print("External Fragmentation : ", external_fragmentation)
         print("Taken : ", taken)
-        # self.display_box(taken)
+        self.display_box_var(taken)
 
     def Worst_fit_var(self, type):
         taken = []
@@ -315,7 +315,7 @@ class Memory_management:
         print("Internal Fragmentation : ", internal_fragmentation)
         print("External Fragmentation : ", external_fragmentation)
         print("Taken : ", taken)
-        # self.display_box(taken)
+        self.display_box_var(taken)
 
     def display_box(self, taken):
         print("""+""", end="")
@@ -347,6 +347,44 @@ class Memory_management:
         print("""\n+""", end="")
         for i in taken:
             print("""-------+""", end="")
+    def display_box_var(self, taken):
+
+        print("""+""", end="")
+        for i in taken:
+            print("""---------------+""", end="")
+        print("\n|", end="")
+        k = 0
+        for i in taken:
+            print(bcolors.OKBLUE + "    %6d     |" % (self.memory_partitions[k]), end="" + bcolors.ENDC)
+            k = k + 1
+
+        print("\n|", end="")
+        for i in taken:
+            if len(i)!=0:
+                # print("Block number ", taken.index(i) + 1, " has been given to Process number ", i + 1)
+                i[:]=[x+1 for x in i]
+
+                print(bcolors.WARNING + """      {0}""".format(i), end="" + bcolors.ENDC)
+                for i in range(9-len(str(i))):
+                    print(" ",end="")
+                print("|",end="")
+
+            else:
+                print(bcolors.FAIL + """       X       |""", end="" + bcolors.ENDC)
+        print("\n|", end="")
+        k = 0
+        for i in taken:
+            try:
+                print(bcolors.FAIL + "    %6d     |" % (self.internal_frag[k]), end="" + bcolors.ENDC)
+                k = k + 1
+            except:
+                print(bcolors.FAIL + "       X       |", end="" + bcolors.ENDC)
+                k = k + 1
+
+        print("""\n+""", end="")
+        for i in taken:
+            print("""---------------+""", end="")
+
 
     def Main(self):
         print("Initiating Memory Management")

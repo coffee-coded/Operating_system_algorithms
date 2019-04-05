@@ -1,5 +1,2 @@
-print("""
-            
-            {0}
-               """.format(10),end="")
-print("Next Line")
+x = [1,2,4]
+print(x[::-1])
